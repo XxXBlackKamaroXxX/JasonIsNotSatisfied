@@ -666,7 +666,7 @@ function load(){
 
     let startButton =  document.createElement('button');
     startButton.innerHTML = 'START';
-    startButton.style.fontSize = '50px';
+    startButton.style.fontSize = '10px';
     startButton.setAttribute('id', 'start');
 
     let p = document.createElement('p');
@@ -674,7 +674,7 @@ function load(){
 
     let mouseButton = document.createElement('button');
     mouseButton.innerHTML = 'Mouse';
-    mouseButton.style.fontSize = '50px';
+    mouseButton.style.fontSize = '10px';
     mouseButton.setAttribute('id', 'mouse');
 
     let p_1 = document.createElement('p');
@@ -682,7 +682,7 @@ function load(){
 
     let keyboardButton = document.createElement('button');
     keyboardButton.innerHTML = 'Keyboard';
-    keyboardButton.style.fontSize = '50px';
+    keyboardButton.style.fontSize = '10px';
     keyboardButton.setAttribute('id', 'keyboard');
 
     let p_2 = document.createElement('p');
@@ -690,7 +690,7 @@ function load(){
 
     let touchButton = document.createElement('button');
     touchButton.innerHTML = 'Touch';
-    touchButton.style.fontSize = '50px';
+    touchButton.style.fontSize = '10px';
     touchButton.setAttribute('id', 'touch');
 
     canvas.after(h1);
