@@ -217,6 +217,9 @@ function game() {
         cvs.ontouchend = function (ev) {
             ev.preventDefault();
             var touches = ev.changedTouches;
+            if(ev) {
+                arrayOfBullets.push(new Bullet(plr.x + 149, plr.y + 10, 30));
+            }
             for (var i = 0; i < touches.length; i++) {
                 var idx = ongoingTouchIndexById(touches[i].identifier);
                 if (idx >= 0) {
