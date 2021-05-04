@@ -204,8 +204,8 @@ function game() {
             event.preventDefault();
             var touches = event.changedTouches;
             ongoingTouches.push(copyTouch(touches[0]));
-            last_x = ongoingTouches[0].pageX;
-            last_y = ongoingTouches[0].pageY;
+            last_x = touches[0].pageX;
+            last_y = touches[0].pageY;
         }
         cvs.ontouchmove = function (evt) {
             evt.preventDefault(); 
