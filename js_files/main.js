@@ -212,8 +212,8 @@ function game() {
             evt.preventDefault(); 
             let touches = evt.changedTouches;
             moveTouch = touches[0];
-            plr.x = -last_x + moveTouch.pageX - 75;
-            plr.y = -last_y + moveTouch.pageY - 56;
+            plr.x = -last_x + moveTouch.pageX + 75;
+            plr.y = -last_y + moveTouch.pageY + 56;
             last_x = moveTouch.pageX;
             last_y = moveTouch.pageY;  
         }
