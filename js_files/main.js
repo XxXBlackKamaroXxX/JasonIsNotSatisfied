@@ -417,14 +417,14 @@ function game() {
             evt.preventDefault(); 
             let touches = evt.changedTouches;
             moveTouch = touches[0];
-            plr.x = -last_x + moveTouch.pageX;
-            plr.y = -last_y + moveTouch.pageY;
+            plr.x = -last_x + moveTouch.pageX - 75;
+            plr.y = -last_y + moveTouch.pageY - 56;
             last_x = moveTouch.pageX;
             last_y = moveTouch.pageY;  
         }
         document.ontouchend = function (ev) {
-            evt.preventDefault();
-            var touches = evt.changedTouches;
+            ev.preventDefault();
+            var touches = ev.changedTouches;
             for (var i = 0; i < touches.length; i++) {
                 var idx = ongoingTouchIndexById(touches[i].identifier);
                 if (idx >= 0) {
@@ -433,8 +433,8 @@ function game() {
             }
         }
         document.ontouchcancel = function (et) {
-            evt.preventDefault();
-            var touches = evt.changedTouches;
+            et.preventDefault();
+            var touches = et.changedTouches;
             for (var i = 0; i < touches.length; i++) {
                 var idx = ongoingTouchIndexById(touches[i].identifier);
                 ongoingTouches.splice(idx, 1); // remove it; we're done
