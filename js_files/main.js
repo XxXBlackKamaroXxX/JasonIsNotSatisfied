@@ -199,6 +199,9 @@ function game() {
         function copyTouch({ identifier, pageX, pageY }) {
             return { identifier, pageX, pageY };
         }
+        cvs.onclick = function () {
+            arrayOfBullets.push(new Bullet(plr.x + 149, plr.y + 10, 30));
+        }
         cvs.ontouchstart = function (event) {
             event.preventDefault();
             var touches = event.changedTouches;
