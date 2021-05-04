@@ -410,8 +410,44 @@ function game() {
             event.preventDefault();
             var touches = event.changedTouches;
             ongoingTouches.push(copyTouch(touches[0]));
-            plr.x = ongoingTouches[0].pageX;
-            plr.y = ongoingTouches[0].pageY;
+            last_x = ongoingTouches[0].pageX;
+            last_y = ongoingTouches[0].pageY;
+        }
+        document.ontouchmove = function (evt) {
+            evt.preventDefault(); 
+            let touches = evt.changedTouches;
+            moveTouch = touches[0];
+            plr.x = -last_x + moveTouch.pageX;
+            plr.y = -last_y + moveTouch.pageY;
+            last_x = moveTouch.pageX;
+            last_y = moveTouch.pageY;  
+        }
+        document.ontouchend = function (ev) {
+            evt.preventDefault();
+            var touches = evt.changedTouches;
+            for (var i = 0; i < touches.length; i++) {
+                var idx = ongoingTouchIndexById(touches[i].identifier);
+                if (idx >= 0) {
+                    ongoingTouches.splice(idx, 1); // remove it; we're done
+                }
+            }
+        }
+        document.ontouchcancel = function (et) {
+            evt.preventDefault();
+            var touches = evt.changedTouches;
+            for (var i = 0; i < touches.length; i++) {
+                var idx = ongoingTouchIndexById(touches[i].identifier);
+                ongoingTouches.splice(idx, 1); // remove it; we're done
+            }
+        }        
+        function ongoingTouchIndexById(idToFind) {
+            for (var i = 0; i < ongoingTouches.length; i++) {
+                var id = ongoingTouches[i].identifier;
+                if (id == idToFind) {
+                    return i;
+                }
+            }
+            return -1; // not found
         }
     }
 
