@@ -196,7 +196,6 @@ function game() {
 
     if (touchUse == true) {
         var ongoingTouches = [];
-        
         function copyTouch({ identifier, pageX, pageY }) {
             return { identifier, pageX, pageY };
         }
