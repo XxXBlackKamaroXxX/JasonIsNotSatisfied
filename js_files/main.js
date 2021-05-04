@@ -146,12 +146,10 @@ function game() {
         document.onclick = function () {
             arrayOfBullets.push(new Bullet(plr.x + 149, plr.y + 10, 30));
         }
-        document.onmousedown = function (e) {    
+        document.onmousedown = function () {    
             mousedownTimeout = window.setInterval(() => {
                 arrayOfBullets.push(new Bullet(plr.x + 149, plr.y + 10, 30));
             }, 322);
-            plr.x = e.offsetX - 75;
-            plr.y = e.offsetY - 56;
         }
         document.onmouseup = function() {
             window.clearTimeout(mousedownTimeout);
@@ -198,6 +196,7 @@ function game() {
 
     if (touchUse == true) {
         var ongoingTouches = [];
+        
         function copyTouch({ identifier, pageX, pageY }) {
             return { identifier, pageX, pageY };
         }
@@ -211,7 +210,7 @@ function game() {
         cvs.ontouchmove = function (evt) {
             evt.preventDefault(); 
             let touches = evt.changedTouches;
-            moveTouch = touches[0];
+            let moveTouch = touches[0];
             plr.x = -last_x + moveTouch.pageX + 75;
             plr.y = -last_y + moveTouch.pageY + 56;
             last_x = moveTouch.pageX;
