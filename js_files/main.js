@@ -664,7 +664,7 @@ function load(){
 
     score.setAttribute('id', 'score');
 
-    let startButton =  document.createElement('button');
+    var startButton =  document.createElement('button');
     startButton.innerHTML = 'START';
     startButton.style.fontSize = '10px';
     startButton.setAttribute('id', 'start');
