@@ -357,6 +357,8 @@ function game() {
             mousedownTimeout = window.setInterval(() => {
                 arrayOfBullets.push(new Bullet(plr.x + 149, plr.y + 10, 30));
             }, 322);
+            plr.x = event.offsetX - 75;
+            plr.y = event.offsetY - 56;
         }
         document.onmouseup = function() {
             window.clearTimeout(mousedownTimeout);
