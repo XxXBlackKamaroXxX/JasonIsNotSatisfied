@@ -1,210 +1,3 @@
-// var cvs = document.getElementById("canvas");
-// var ctx = cvs.getContext("2d");
-
-// cvs.width = window.innerWidth;
-// cvs.height = window.innerHeight;
-
-// window.addEventListener('resize', resizeCanvas, false);
-
-// function resizeCanvas() {
-//     cvs.width = window.innerWidth;
-//     cvs.height = window.innerHeight;
-
-// }
-// resizeCanvas();
-
-// var bg = new Image();
-// var Hero = new Image();
-// var Hero_bullet = new Image();
-
-// bg.src = "css_files/css_images/bg.png";
-// Hero.src = "css_files/css_images/Hero.png";
-// Hero_bullet.src = "css_files/css_images/bulletHero.png";
-
-// var xPos = 10;
-// var yPos = 150;
-// var playerLives = 3;
-// var score = 0;
-// var scoreHelp = 0;
-// var scoreNoHelp = 0;
-// var scoreTotal = 0;
-// class Sprite {
-//     constructor (x, y, speed, image, distance) {
-//         this.x = x;
-//         this.y = y;
-//         this.speed = speed;
-//         this.image = new Image();
-
-//         this.image.src = image;
-//         this.distance = distance;
-//     }
-// }
-
-// let Player = new Sprite(10, 150, 100, "css_files/css_images/Hero.png", 0);
-// var moveBg = [];
-
-// moveBg[0] = {
-//     x: 0,
-//     y: 0
-// }
-
-// var pressedKeys = {};
-// document.onkeydown = function(event) {
-//     pressedKeys[event.keyCode] = true;
-//     ctx.clearRect(0,0, cvs.width, cvs.height);
-    
-//     Object.keys(pressedKeys).forEach(key => {
-//         if (!pressedKeys[key]) {
-//             return;
-//         } 
-//         if (key == 37 && (Player.x - Player.speed > 0)) {
-//             Player.x -= Player.speed;
-//         } 
-//         if (key == 38 && (Player.y - Player.speed > 0)) {
-//             Player.y -= Player.speed;
-//         } 
-//         if (key == 39 && (Player.x + 149 + Player.speed < cvs.width)) {
-//             Player.x += Player.speed;
-//         } 
-//         if (key == 40) {
-//             Player.y += Player.speed;
-//         }
-//         if (key == 32) {
-//             if (sos) {
-//                 drawBullet();
-//             }
-//         }
-//     });
-// }
-
-// document.onkeyup = function(event) {
-// pressedKeys[event.keyCode] = false;
-// }
-
-// var sos = true;
-// var bullets = [];
-
-
-// setInterval(function drawObstacle() {
-//     let Obstacle_1 = new Sprite(cvs.width, Math.floor(Math.random() * ((cvs.height - 384) - 0 + 1)) + 0, 20, "css_files/css_images/obstacle_1.png", 0);
-//     proc_obstacle();
-//     function proc_obstacle() {
-//         ctx.drawImage(Obstacle_1.image, Obstacle_1.x, Obstacle_1.y);
-//         Obstacle_1.x -= Obstacle_1.speed;
-//         if (Obstacle_1.x < -612) {
-//             score --;
-//             return;
-//         }
-//         if ((Player.x + 149 >= Obstacle_1.x && (Player.x  < (Obstacle_1.x + 612))) && ((Player.y + 112 >= Obstacle_1.y) &&  (Player.y  <= (Obstacle_1.y + 384)))) {
-//             playerLives --;
-//             return;
-//         }
-//         for (var i = 0; i < bullets.length; i++) {
-//             if ((bullets[i][0] >= Obstacle_1.x && bullets[i][0] <= (Obstacle_1.x + 612)) && (bullets[i][1] >= Obstacle_1.y && bullets[i][1] <= (Obstacle_1.y + 384))) {
-//                 score ++;
-//                 sos = true;
-//                 if (score > scoreTotal) {
-//                     scoreTotal++;
-//                 }
-//                 return;
-//             }
-//         }
-//         requestAnimationFrame(proc_obstacle);
-//     }
-// }, Math.floor(Math.random() * (7777 - 6666 + 1)) + 6666);
-
-// function drawBullet() {
-//     let Player_bullet = new Sprite(Player.x + 151, Player.y + 10, 10, "css_files/css_images/bulletHero.png", 0);
-//     proc();
-//     function proc() {
-//         ctx.drawImage(Player_bullet.image, Player_bullet.x, Player_bullet.y);
-//         Player_bullet.x += Player_bullet.speed;
-//         Player_bullet.distance += Player_bullet.speed;
-//         bullets.push([Player_bullet.x, Player_bullet.y, Player_bullet.image]);
-//         sos = false;
-//         for (var i = 0; i < bullets.length; i++) {
-//             if (bullets[i][0] > (cvs.width + cvs.width / 2)) {
-//                 bullets.splice(0, bullets.length);
-//                 sos = true;
-//                 return;
-//             }
-//         }
-//         requestAnimationFrame(proc);
-//     }   
-// }
-
-// setInterval(function drawEnemy() { 
-//     let Enemy_1 = new Sprite(cvs.width, Math.floor(Math.random() * ((cvs.height - 500) - 100 + 1)) + 100, 5, "css_files/css_images/Enemy_1.png", 0);
-//     proc_enemy();
-//     function proc_enemy() {
-//         ctx.drawImage(Enemy_1.image, Enemy_1.x, Enemy_1.y);
-//         let Enemy_1_bullet = new Sprite(Enemy_1.x + 151, Enemy_1.y + 10, 10, "css_files/css_images/bulletHero.png", 0);
-//         setInterval(function a() {
-//                 ctx.drawImage(Enemy_1_bullet.image, Enemy_1_bullet.x, Enemy_1_bullet.y);
-//                 Enemy_1_bullet.x -= Enemy_1_bullet.speed;
-//                 requestAnimationFrame(a);
-//         }, 5000);
-//         Enemy_1.x -= Enemy_1.speed;
-//         if (Enemy_1.x < -226) {
-//             score --;
-//             return;
-//         }
-//         if ((Player.x + 149 >= Enemy_1.x && (Player.x  < (Enemy_1.x + 226))) && ((Player.y + 112 >= Enemy_1.y) &&  (Player.y  <= (Enemy_1.y + 202)))) {
-//             playerLives --;
-//             return;
-//         }
-//         for (var i = 0; i < bullets.length; i++) {
-//             if ((bullets[i][0] >= Enemy_1.x && bullets[i][0] <= (Enemy_1.x + 226)) && (bullets[i][1] >= Enemy_1.y && bullets[i][1] <= (Enemy_1.y + 202))) {
-//                 score ++;
-//                 sos = true;
-//                 if (score > scoreTotal) {
-//                     scoreTotal++;
-//                 }
-//                 return;
-//             }
-//         }
-//         requestAnimationFrame(proc_enemy);
-//     }
-
-// }, Math.floor(Math.random() * (2500 - 1500 + 1)) + 1500);
-
-// function info() {
-//     if (score == (scoreHelp + 100)) {
-//         playerLives++;
-//         scoreHelp = score;
-//     }
-//     if (score == (scoreNoHelp - 10)) {
-//         playerLives--;
-//         scoreNoHelp = score;
-//     }
-
-//     ctx.fillStyle = "white";
-//     ctx.font = "32.2px Verdana";
-//     ctx.fillText("Счет: " + score, 10, 50);
-//     ctx.fillStyle = "blue";
-//     ctx.fillText("Лучший счет: " + scoreTotal, 10, 100);
-//     ctx.fillStyle = "red";
-//     ctx.fillText("Очко: x" + playerLives, 10, 150);
-// }
-
-// function draw() {
-//     for (var i = 0; i < moveBg.length; i++) {
-//         ctx.drawImage(bg, moveBg[i].x, moveBg[i].y);
-//         moveBg[i].x--;
-//         if(moveBg[i].x == -1) {
-//             moveBg.push({
-//                 x: cvs.width,
-//                 y: 0
-//             });
-//         }
-//     }
-//     ctx.drawImage(Player.image, Player.x, Player.y);
-//     info();
-//     requestAnimationFrame(draw);
-// }
-
-// draw();
-
 let mouseUse = false;
 let keyboardUse = false;
 let touchUse = false;
@@ -408,14 +201,14 @@ function game() {
         function copyTouch({ identifier, pageX, pageY }) {
             return { identifier, pageX, pageY };
         }
-        document.ontouchstart = function (event) {
+        cvs.ontouchstart = function (event) {
             event.preventDefault();
             var touches = event.changedTouches;
             ongoingTouches.push(copyTouch(touches[0]));
             last_x = ongoingTouches[0].pageX;
             last_y = ongoingTouches[0].pageY;
         }
-        document.ontouchmove = function (evt) {
+        cvs.ontouchmove = function (evt) {
             evt.preventDefault(); 
             let touches = evt.changedTouches;
             moveTouch = touches[0];
@@ -424,7 +217,7 @@ function game() {
             last_x = moveTouch.pageX;
             last_y = moveTouch.pageY;  
         }
-        document.ontouchend = function (ev) {
+        cvs.ontouchend = function (ev) {
             ev.preventDefault();
             var touches = ev.changedTouches;
             for (var i = 0; i < touches.length; i++) {
@@ -434,7 +227,7 @@ function game() {
                 }
             }
         }
-        document.ontouchcancel = function (et) {
+        cvs.ontouchcancel = function (et) {
             et.preventDefault();
             var touches = et.changedTouches;
             for (var i = 0; i < touches.length; i++) {
@@ -702,14 +495,6 @@ function load(){
 
     score.setAttribute('id', 'score');
 
-    var startButton =  document.createElement('button');
-    startButton.innerHTML = 'START';
-    startButton.style.fontSize = '10px';
-    startButton.setAttribute('id', 'start');
-
-    let p = document.createElement('p');
-    p.setAttribute('id', 'p');
-
     let mouseButton = document.createElement('button');
     mouseButton.innerHTML = 'Mouse';
     mouseButton.style.fontSize = '10px';
@@ -733,9 +518,7 @@ function load(){
 
     canvas.after(h1);
     h1.after(score);
-    score.after(startButton);
-    startButton.after(p);
-    p.after(mouseButton);
+    score.after(mouseButton);
     mouseButton.after(p_1);
     p_1.after(keyboardButton);
     keyboardButton.after(p_2);
@@ -753,10 +536,6 @@ function doAfterLoad(){
             h1.style.display = 'none';
         var h2 = document.getElementById('score');
             h2.style.display = 'none';
-        var startButton = document.getElementById('start');
-            startButton.style.display = 'none';
-        var p = document.getElementById('p');
-            p.style.display = 'none';
         var p_1 = document.getElementById('p_1');
             p_1.style.display = 'none';
         var p_2 = document.getElementById('p_2');
@@ -769,24 +548,18 @@ function doAfterLoad(){
             touch.style.display = 'none';
     }
 
-    ar[3].onclick = () => {
-        touchUse = true;
-        mouseUse = false;
-        keyboardUse = false;
-        doIfButtonClicked();
-        game();
-    }
     ar[2].onclick = () => {
-        keyboardUse = true;
-        mouseUse = false;
-        touchUse = false;
+        touchUse = true;
         doIfButtonClicked();
         game();
     }
     ar[1].onclick = () => {
+        keyboardUse = true;
+        doIfButtonClicked();
+        game();
+    }
+    ar[0].onclick = () => {
         mouseUse = true;
-        keyboardUse = false;
-        touchUse = false;
         doIfButtonClicked();
         game();
     }
@@ -804,12 +577,6 @@ function showMenu(){
             h2.style.display = 'block';
             h2.innerHTML = `BEST SCORE = ${scoreTotal}`;
             h2.style.textAlign = 'center';
-
-        var startButton = document.getElementById('start');
-            startButton.style.display = 'block';
-
-        var p = document.getElementById('p');
-            p.style.display = 'block';
 
         var p_1 = document.getElementById('p_1');
             p_1.style.display = 'block';
