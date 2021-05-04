@@ -146,12 +146,12 @@ function game() {
         document.onclick = function () {
             arrayOfBullets.push(new Bullet(plr.x + 149, plr.y + 10, 30));
         }
-        document.onmousedown = function () {    
+        document.onmousedown = function (e) {    
             mousedownTimeout = window.setInterval(() => {
                 arrayOfBullets.push(new Bullet(plr.x + 149, plr.y + 10, 30));
             }, 322);
-            plr.x = event.offsetX - 75;
-            plr.y = event.offsetY - 56;
+            plr.x = e.offsetX - 75;
+            plr.y = e.offsetY - 56;
         }
         document.onmouseup = function() {
             window.clearTimeout(mousedownTimeout);
