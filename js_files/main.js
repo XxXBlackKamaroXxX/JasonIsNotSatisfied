@@ -104,8 +104,8 @@ function game() {
             this.img = new Image();
             this.img.src = 'css_files/css_images/Boss_1.png';
             this.dist = 0;
-            this.sizeX = 552;
-            this.sizeY = 552;
+            this.sizeX = ((2 * width )/ 7);
+            this.sizeY = (height / 2);
             
         }
     }
@@ -115,8 +115,8 @@ function game() {
             this.x = x;
             this.y = y;
             this.speed = 10;
-            this.sizeX = 94;
-            this.sizeY = 94;
+            this.sizeX = ((8 * height) / 100);
+            this.sizeY = ((8 * height) / 100);
             this.img = new Image();
             this.img.src = 'css_files/css_images/bossBullet.png';
             this.coordinates = new Array();
@@ -223,7 +223,7 @@ function game() {
             for (var i = 0; i < touches.length; i++) {
                 var idx = ongoingTouchIndexById(touches[i].identifier);
                 if (idx >= 0) {
-                    ongoingTouches.splice(idx, 1); // remove it; we're done
+                    ongoingTouches.splice(idx, 1); 
                 }
             }
         }
@@ -232,7 +232,7 @@ function game() {
             var touches = et.changedTouches;
             for (var i = 0; i < touches.length; i++) {
                 var idx = ongoingTouchIndexById(touches[i].identifier);
-                ongoingTouches.splice(idx, 1); // remove it; we're done
+                ongoingTouches.splice(idx, 1); 
             }
         }        
         function ongoingTouchIndexById(idToFind) {
@@ -242,7 +242,7 @@ function game() {
                     return i;
                 }
             }
-            return -1; // not found
+            return -1; 
         }
     }
 
@@ -307,11 +307,11 @@ function game() {
 
         if ((Score >= 10 && Score < 13) || Score > 20) {
             ctx.drawImage(boss.img, boss.x, boss.y);
-            if((boss.y + 552) < height && a == true) {
+            if((boss.y + boss.sizeY) < height && a == true) {
                 boss.y += boss.speed;
                 boss.dist += boss.speed;
             }
-            if ((boss.y + 552) >= height) {
+            if ((boss.y + boss.sizeY) >= height) {
                 a = false;
             }
             if (a == false) {
@@ -322,7 +322,7 @@ function game() {
                 a = true;
             }
             if(boss.dist % 100 == 0){
-                arrayOfBossBullets.push(new BossBullet(boss.x - 5, boss.y + boss.sizeY / 10));
+                arrayOfBossBullets.push(new BossBullet(boss.x - 5, boss.y));
                 arrayOfBossBullets.push(new BossBullet(boss.x - 5, boss.y + boss.sizeY + boss.sizeY / 5));
             }
             arrayOfBossBullets.forEach(bossBullet => {
@@ -484,20 +484,17 @@ function load(){
     let h1 = document.createElement('h1');
     h1.innerHTML = 'MAIN MENU';
     h1.style.textAlign = 'center';
-    h1.style.fontSize = '70px';
 
     h1.setAttribute('id', 'head');
 
     let score = document.createElement('h2');
     score.innerHTML = `BEST SCORE = ${scoreTotal}`;
     score.style.textAlign = 'center';
-    score.style.fontSize = '60px';
 
     score.setAttribute('id', 'score');
 
     let mouseButton = document.createElement('button');
     mouseButton.innerHTML = 'Mouse';
-    mouseButton.style.fontSize = '10px';
     mouseButton.setAttribute('id', 'mouse');
 
     let p_1 = document.createElement('p');
@@ -505,7 +502,6 @@ function load(){
 
     let keyboardButton = document.createElement('button');
     keyboardButton.innerHTML = 'Keyboard';
-    keyboardButton.style.fontSize = '10px';
     keyboardButton.setAttribute('id', 'keyboard');
 
     let p_2 = document.createElement('p');
@@ -513,7 +509,6 @@ function load(){
 
     let touchButton = document.createElement('button');
     touchButton.innerHTML = 'Touch';
-    touchButton.style.fontSize = '10px';
     touchButton.setAttribute('id', 'touch');
 
     canvas.after(h1);
