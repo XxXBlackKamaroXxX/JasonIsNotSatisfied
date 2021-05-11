@@ -107,7 +107,7 @@ function game() {
             this.img.src = 'css_files/css_images/Boss_1.png';
             this.dist = 0;
             this.sizeX = ((2 * width )/ 7);
-            this.sizeY = (height / 4);
+            this.sizeY = ((2 * width )/ 7);
             
         }
     }
