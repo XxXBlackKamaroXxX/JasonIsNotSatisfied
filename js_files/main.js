@@ -75,8 +75,8 @@ function game() {
             this.speed = 5;
             this.img = new Image();
             this.img.src = 'css_files/css_images/Enemy_1.png';
-            this.sizeX = height / 10 + height / 50;
-            this.sizeY = height / 10 + height / 50;
+            this.sizeX = width / 10 + height / 50;
+            this.sizeY = width / 10 + height / 50;
         }
     }
 
@@ -308,7 +308,7 @@ function game() {
         }
 
         if ((Score >= 10 && Score < 13) || Score > 20) {
-            ctx.drawImage(boss.img, boss.x, boss.y);
+            ctx.drawImage(boss.img, boss.x, boss.y, boss.sizeX, boss.sizeY);
             if((boss.y + boss.sizeY + 25) < height && a == true) {
                 boss.y += boss.speed;
                 boss.dist += boss.speed;
@@ -393,7 +393,7 @@ function game() {
 
         if(arrayOfObstacles.length != 0){
             arrayOfObstacles.forEach(obstacle => {
-                ctx.drawImage(obstacle.img, obstacle.x -= obstacle.speed, obstacle.y);
+                ctx.drawImage(obstacle.img, obstacle.x -= obstacle.speed, obstacle.y, obstacle.sizeX, obstacle.sizeY);
                 if ((obstacle.x + obstacle.sizeX > plr.x) && (obstacle.x < (plr.x + playerXSize)) && (obstacle.y + obstacle.sizeY > plr.y) && (obstacle.y < (plr.y + playerYSize))) {
                     if(!plr.damaged){
                         plr.lives --;
