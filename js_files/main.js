@@ -59,6 +59,8 @@ function game() {
         constructor() {
             this.x = width;
             this.y = Math.floor(Math.random() * ((cvs.height - 384) - 0 + 1)) + 0;
+            this.sizeX = width / 3;
+            this.sizeY = height / 3;
             this.speed = 20;
             this.img = new Image();
             this.img.src = 'css_files/css_images/Obstacle_1.png';
@@ -69,12 +71,12 @@ function game() {
     class Enemy{
         constructor(){
             this.x = width;
-            this.y = Math.floor(Math.random() * ((cvs.height - 500) - 100 + 1)) + 100;
+            this.y = Math.floor(Math.random() * ((cvs.height - 200) - 200 + 1)) + 200;
             this.speed = 5;
             this.img = new Image();
             this.img.src = 'css_files/css_images/Enemy_1.png';
-            this.sizeX = 120;
-            this.sizeY = 120;
+            this.sizeX = height / 10 + height / 50;
+            this.sizeY = height / 10 + height / 50;
         }
     }
 
@@ -105,7 +107,7 @@ function game() {
             this.img.src = 'css_files/css_images/Boss_1.png';
             this.dist = 0;
             this.sizeX = ((2 * width )/ 7);
-            this.sizeY = (height / 2);
+            this.sizeY = (height / 4);
             
         }
     }
@@ -307,11 +309,11 @@ function game() {
 
         if ((Score >= 10 && Score < 13) || Score > 20) {
             ctx.drawImage(boss.img, boss.x, boss.y);
-            if((boss.y + boss.sizeY) < height && a == true) {
+            if((boss.y + boss.sizeY + 25) < height && a == true) {
                 boss.y += boss.speed;
                 boss.dist += boss.speed;
             }
-            if ((boss.y + boss.sizeY) >= height) {
+            if ((boss.y + boss.sizeY + 25) >= height) {
                 a = false;
             }
             if (a == false) {
@@ -323,7 +325,7 @@ function game() {
             }
             if(boss.dist % 100 == 0){
                 arrayOfBossBullets.push(new BossBullet(boss.x - 5, boss.y));
-                arrayOfBossBullets.push(new BossBullet(boss.x - 5, boss.y + boss.sizeY + boss.sizeY / 5));
+                arrayOfBossBullets.push(new BossBullet(boss.x - 5, boss.y + boss.sizeY + (2 * height) / 5));
             }
             arrayOfBossBullets.forEach(bossBullet => {
                 if(arrayOfBossBullets.length != 0){                
@@ -347,7 +349,7 @@ function game() {
             }
             arrayOfBullets.forEach(bullet => {
                 if(bullet.coordinates.length != 0) {
-                    if((bullet.coordinates[0] > boss.x) && (bullet.coordinates[0] < (boss.x + 552)) && (bullet.y > boss.y) && (bullet.y < (boss.y + 552))) {
+                    if((bullet.coordinates[0] > boss.x) && (bullet.coordinates[0] < (boss.x + boss.sizeX)) && (bullet.y > boss.y) && (bullet.y < (boss.y + boss.sizeY))) {
                         arrayOfBullets.splice(arrayOfBullets.indexOf(bullet), 1);
                         ctx.clearRect(bullet.coordinates[0], bullet.y, 37, 13);
                         bossHit += 1;
@@ -392,7 +394,7 @@ function game() {
         if(arrayOfObstacles.length != 0){
             arrayOfObstacles.forEach(obstacle => {
                 ctx.drawImage(obstacle.img, obstacle.x -= obstacle.speed, obstacle.y);
-                if ((obstacle.x + 612 > plr.x) && (obstacle.x < (plr.x + playerXSize)) && (obstacle.y + 384 > plr.y) && (obstacle.y < (plr.y + playerYSize))) {
+                if ((obstacle.x + obstacle.sizeX > plr.x) && (obstacle.x < (plr.x + playerXSize)) && (obstacle.y + obstacle.sizeY > plr.y) && (obstacle.y < (plr.y + playerYSize))) {
                     if(!plr.damaged){
                         plr.lives --;
                         plr.damaged = true;
